@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>呓语</title>
+<link href="/static/img/favicon.ico" type="image/x-icon" rel="shortcut icon">
+<link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+<script src="/static/uemini/jquery-1.10.2.min.js" type="text/javascript"></script>
+<script src="/static/bootstrap/js/bootstrap.min.js"></script>
+<style type="text/css">
+   li {
+	list-style-type: none;
+}
+body{
+	background-color:#fff;
+	font-family: 微软雅黑,Microsoft YaHei;
+}
+</style>
+</head>
+<body>
+	<div class="row-fluid">
+		<div class="span5 offset3">
+			<div class="" style="">
+		       <div class="navbar">
+	               <div class="navbar-inner">
+			       <a class="brand" href="/" title="首页"><img src="/static/img/yiyu.png" style="width:32px;"/></a>
+	               <ul class="nav">
+                       <li><a href="/xianyan" title="写感慨长文">闲言</a></li>
+		       <li><a href="/suiyu" title="来点碎碎念">碎语</a></li>
+		       <li><a href="/backyard" title="私人花园">后院</a></li>
+		       <li><a href="/friend-links" title="友情链接">友链</a></li>
+	       </ul>
+	       {% if g.user == None %}
+	       <a style="float:right;margin-top:10px;"  href="/login">登录</a>
+	       {% else %}
+	       <a style="float:right;margin-top:10px;"  href="/logout">注销</a>
+	       {% endif %}
+                       </div>
+                      </div>
+                      </div>
+		    {% for yiyu in yiyus %}
+		    <div class="alert alert-info" style="background-color:#EDF4ED;">
+			    <li><a href="/show/{{ yiyu._id }}"><strong>{{ yiyu.title }}</strong></a></li>
+			    <li></li>
+			   <div style="font-size:12px;">{{ yiyu.text[:200] }}</div>
+			 <li></li>
+			    <div style="font-size:11px;">{{ yiyu.post_time.__str__()[:-4] }}</div>
+	            </div>
+		    {% endfor %}
+		        <div class="pagination">
+			    <ul>
+				    <li class="disabled"><a href="#">&laquo;</a></li>
+				    {% for i in range(1,count+1) %}
+				    {% if start == i %}
+				    <li class="active"><a href="/?start={{ i }}">{{ i }}</a></li>
+				    {% else %}
+				    <li><a href="/?start={{ i }}">{{ i }}</a></li>
+				    {% endif %}
+				    {% endfor %}
+			           <li class="disabled"><a href="#">&raquo;</a></li>
+	                    </ul>
+		    </div>
+		    <hr style="height:2px;border:none;border-bottom:1px dotted #BCE8F1;margin-bottom:3px;">
+		    <span style="font-size:12px;margin-left:48px;"> © 2013 xiaoshouhu.com, all rights reserved </span>
+		    <a style="font-size:12px;margin-left:10px;" href="/show/52934c686e95522719115185">关于呓语</a> 
+		    <a style="font-size:12px;margin-left:4px;"href="/manage">管理呓语</a>
+	    </div>
+    </div>
+</body>
+</html>
